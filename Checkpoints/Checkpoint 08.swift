@@ -1,6 +1,6 @@
 import Cocoa
 
-// Problem: Write a Function that accepts an integer from 1 to 10,000 and returns the integer Square Root of that number. You can't use 'sqrt()'.
+// Problem: Write a Function that accepts an integer from 1 to 10,000 and returns the integer Square Root of that number. You can't use 'sqrt()' (Brute Force).
 enum rootError:Error{
     case outOfBounds, noRoot
 }
