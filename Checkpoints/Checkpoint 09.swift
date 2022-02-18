@@ -7,7 +7,7 @@ enum rootError:Error{
 }
 
 func squareRoot(of number: Int) throws -> Int{
-    if number < 0 || number > 10_000 { throw rootError.outOfBounds }
+    if number < 0 { throw rootError.outOfBounds }
     
     if number == 1{
         return 1
@@ -15,10 +15,9 @@ func squareRoot(of number: Int) throws -> Int{
         var right = Int(number/2)
         var left = 1
         
-        
-        while left < right-1{
-            var mid = Int((right+left)/2)
-            var guess = mid * mid
+        while left < right - 1 {
+            let mid = Int((right+left)/2)
+            let guess = mid * mid
             
             print("Left: \(left) Right:\(right) Guess: \(mid)")
 
