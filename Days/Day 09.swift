@@ -42,3 +42,22 @@ func changePassword(to password: String) -> Bool {
 let modifyPassword: (String) -> Bool = changePassword
 let isValid = modifyPassword("Hello")
 print(isValid)
+
+
+// We can use Closures to modify another Function behavior when we send it to it.
+// For example, we can modify the 'sorted()' function to sort an element first.
+func zeroFirst(first:Int, second:Int) -> Bool {
+    if first == 0 {
+        return true
+    } else if second == 0 {
+        return false
+    }
+    return first < second
+}
+
+let myList:[Int] = [9,4,1,2,0,3,0,4,8,-1,-5,-12]
+// We send the 'zeroFirst' closure to the 'sorted()' function.
+let newList = myList.sorted(by: zeroFirst)
+print(newList)
+
+// Closures are a way to store functionallity when you don't know what must be done.
