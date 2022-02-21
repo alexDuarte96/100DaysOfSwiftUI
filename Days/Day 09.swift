@@ -123,3 +123,84 @@ let upperCasedNames = names.map{ $0.uppercased() }
 print(upperCasedNames)
 
 // Closures are Widely used in Swift and SwiftUI. And example is when you click a button, it will ask for a Closure to define what to do after clicking it.
+
+// -----------------------
+// Functions as Parameters
+// -----------------------
+
+// To recive a Function as a Parameter, we use:
+/*
+ func fuctionName(label closure: (Type) -> Type) -> Type {
+    ... some code.
+ }
+ */
+
+// Example. A function that generates a list of Ints. The function recieves a size, and a closure that defines the way Integer values are generated.
+func generateIntList(size: Int, algorithm generator: () -> Int) -> [Int] {
+    var intList: [Int] = []
+    for _ in 1...size {
+        intList.append(generator())
+    }
+    return intList
+}
+
+let loteryNumbers = generateIntList(size: 8){
+    Int.random(in: 1...100)
+}
+
+let diceRoll = { Int.random(in: 0...6) }
+let monopolyTurn = generateIntList(size: 2, algorithm: diceRoll)
+
+
+print(monopolyTurn)
+print(loteryNumbers)
+
+// To recive Multiple Functions as Parameters, we use:
+/*
+ func name(label closure1: (Type) -> Type, ... , label closureN: (Type) -> Type) {
+    ... some code.
+ }
+ */
+
+func doMultipleThings(a:Int, b:String, first: () -> Void, second: (Int) -> Void, third: (String) -> Bool){
+    print("First Closure:")
+    first()
+    print("Second Closure:")
+    second(a)
+    print("Third Closure:")
+    print(third(b))
+}
+
+// To call and send multiple closures, we must send each closure between curly braces.
+let one = {
+    print("Doing the first thing!")
+}
+
+let bark = { (times: Int) in
+    for _ in 1...times {
+        print("Barf!")
+    }
+}
+
+func isStrongPassword(_ password: String) -> Bool{
+    return password.count > 8
+}
+
+doMultipleThings(a:5, b:"1234567"){
+    one()
+} second: { a in
+    bark(a)
+} third: { b in
+    isStrongPassword(b)
+}
+
+
+
+func repeatAction(count: Int, action: () -> Void) {
+    for _ in 0..<count {
+        action()
+    }
+}
+repeatAction(count: 5) {
+    print("Hello, world!")
+}
