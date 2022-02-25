@@ -123,3 +123,24 @@ print("Remaining Funds: \(myAccount.remainingFunds)")
     }
  }
 */
+struct Inventory {
+    var stock: Int
+    var sold: Int
+    
+    var remaining: Int {
+        get {
+            stock - sold
+        }
+        set{
+            stock = newValue + sold
+        }
+    }
+}
+
+var storageRoom = Inventory(stock: 10, sold: 0)
+storageRoom.sold += 2
+print("Stock Remaining:\(storageRoom.remaining)")
+
+storageRoom.remaining = 20
+print("Stock:\(storageRoom.stock)")
+print("Stock Remaining:\(storageRoom.remaining)")
