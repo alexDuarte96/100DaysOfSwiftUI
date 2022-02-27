@@ -202,10 +202,23 @@ let third = User(name: "John")
  }
 */
 struct Account {
-    let name: String
-    let lastName: String
+    let name:String
+    let lastName:String
     let email:String
-    let ID: Int
+    let ID:Int
+    var balance:Int = 0 {
+        willSet {
+            print("Trying to access account...")
+            if balance > newValue {
+                print("Extracting \(balance - newValue) from account.")
+            } else {
+                print("Adding \(newValue - balance) from account.")
+            }
+        }
+        didSet {
+            print("Transaction complete!")
+        }
+    }
     
     init(name:String, lastName:String) {
         self.name = name
@@ -216,4 +229,6 @@ struct Account {
 }
 
 var senior = Account(name: "Alex", lastName: "Duarte")
+senior.balance = 100
+senior.balance = 80
 print(senior)
