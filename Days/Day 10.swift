@@ -72,12 +72,6 @@ var store = CookieShop(name: "Store 01", cookiesLeft: 80)
 store.sellCookies(amount: 4)
 print(store.cookiesLeft)
 
-// ------------
-// Initializers
-// ------------
-// When we 'Initialize' a Struct, it looks a lot like a Function. And that's because  Swift automatically creates a 'init' function that 'Initializes' a Struct in a variable.
-var newStore = CookieShop.init(name: "Shop 02")
-var anotherShop = CookieShop.init(name: "Shop 03", cookiesLeft: 123)
 
 // -------------------
 // Computed Properties
@@ -99,9 +93,8 @@ struct SavingsAccount {
     var spendings:Int
     
     var remainingFunds: Int {
-        savings - spendings
+        return savings - spendings
     }
-    
 }
 
 // Everytime we modify a Propierty that is involved in a Computed Property, it is recalculated.
@@ -129,7 +122,7 @@ struct Inventory {
     
     var remaining: Int {
         get {
-            stock - sold
+            return stock - sold
         }
         set{
             stock = newValue + sold
@@ -144,3 +137,83 @@ print("Stock Remaining:\(storageRoom.remaining)")
 storageRoom.remaining = 20
 print("Stock:\(storageRoom.stock)")
 print("Stock Remaining:\(storageRoom.remaining)")
+
+// ------------------
+// Property Observers
+// ------------------
+// Property Obersvers allows us to run some code each time a Property: is changed or is about to be changed.
+/*
+ struct Name {
+    var property: Type{
+        willSet{ ...code to run before assignment }
+        didSet{ ...code to run after assignment }
+    }
+ }
+*/
+struct Bonds {
+    var moneyAmount: Int {
+        didSet {
+            print("Succesful Transaction!")
+            print("Old balance: \(oldValue)")
+            print("Current balance: \(moneyAmount)")
+        }
+        willSet {
+            print("Trying to access account information...")
+            print("Current balance: \(moneyAmount)")
+            
+            print("Difference in balance: ")
+            if newValue > moneyAmount {
+                print("+ \(newValue - moneyAmount)")
+            }else{
+                print("- \(moneyAmount - newValue)")
+            }
+        }
+    }
+}
+
+var myBonds = Bonds(moneyAmount: 10)
+myBonds.moneyAmount = 25
+
+// ------------
+// Initializers
+// ------------
+// When we 'Initialize' a Struct, it looks a lot like a Function. And that's because  Swift automatically creates a 'init' function that 'Initializes' a Struct in a variable. This default Initializers are called 'Memberwise Initializer'.
+struct User {
+    var name: String
+    var points: Int = 0
+}
+
+let first = User(name: "Alex", points: 3)
+let second = User.init(name: "Jessica", points: 5)
+
+
+// Initializers will only be valid if every Property has a value assigned before initializing the Struct.
+// let invalid = User(points: 0)
+let third = User(name: "John")
+
+// We can create custom Initializers for our Structs. We use the prefix '.self' to refer to the properties of the Struct itself, and not the parameters sent to the initializer.
+/*
+ struct Name {
+    var property:Type
+    
+    init(property:Type){
+        self.property = property
+    }
+ }
+*/
+struct Account {
+    let name: String
+    let lastName: String
+    let email:String
+    let ID: Int
+    
+    init(name:String, lastName:String) {
+        self.name = name
+        self.lastName = lastName
+        self.email = "\(name).\(lastName)@company.com".lowercased()
+        self.ID = Int.random(in: 0...Int.max)
+    }
+}
+
+var senior = Account(name: "Alex", lastName: "Duarte")
+print(senior)
