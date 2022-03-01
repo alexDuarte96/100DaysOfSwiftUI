@@ -19,6 +19,8 @@ import Cocoa
  
 */
 
+var number = 007
+
 struct FrequentCustomer {
     private(set) var creditCard:Int
     private(set) var email:String
@@ -44,6 +46,32 @@ struct FrequentCustomer {
 }
 
 var newUser = FrequentCustomer(creditCard: 555, email: "mail@mail.com", points: 10)
-
 newUser.addPoints(ammount: 12)
 newUser.withdrawPoints(ammount: 18)
+
+// -----------------------------
+// Static Properties and Methods
+// -----------------------------
+// Static Properties are values that are Global to every Structure of the same type, and not to an specific Instance of the Structure.
+
+struct University {
+    static let domain = "university.com"
+    static var students = [String:String]()
+    
+    private(set) var campusName:String
+    
+    static let example = University(name: "example")
+    
+    init(name:String){
+        self.campusName = name
+    }
+}
+
+University.students["00123"] = "Alex Duarte"
+print(University.domain)
+print(University.students)
+print(University.example)
+
+var northCampus = University(name: "North")
+var southCampus = University(name: "South")
+print(northCampus)
