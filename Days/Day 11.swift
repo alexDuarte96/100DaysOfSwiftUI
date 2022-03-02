@@ -18,9 +18,6 @@ import Cocoa
  // public: anyone can read/write the Property,
  
 */
-
-var number = 007
-
 struct FrequentCustomer {
     private(set) var creditCard:Int
     private(set) var email:String
