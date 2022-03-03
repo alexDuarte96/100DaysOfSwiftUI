@@ -11,7 +11,6 @@ struct Car {
     init(model: String, seats:Int){
         self.model = model
         self.seats = seats
-        
         self.currentGear = 1
     }
     
