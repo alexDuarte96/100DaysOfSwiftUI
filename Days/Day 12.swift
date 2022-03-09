@@ -19,7 +19,13 @@ class Zombie {
     init(healt:Int){
         self.health = healt
     }
+    
+    func greet(){
+        print("Ughhh.")
+    }
 }
+var zombie = Zombie(healt: 10)
+zombie.greet()
 
 // -----------
 // Inheritance
@@ -86,4 +92,97 @@ final class Intern:Coder {
     func studyforFinals(){
         print("I'm still a student so I need to study for my finals.")
     }
+}
+
+let heidi = Intern(workingHours: 6)
+heidi.studyforFinals()
+
+// ------------
+// Initializers
+// ------------
+// When we have additional custom Properties on the child classes, we must always call the Parent or 'super' class Initializer if we want to create one.
+class Drink {
+    var size: Int
+    
+    init(size: Int){
+        self.size = size
+    }
+}
+
+class Soda:Drink {
+    var flavour: String
+    init(size:Int, flavour:String){
+        self.flavour = flavour
+        super.init(size: size)
+    }
+}
+
+// ---------------
+// Copying Classes
+// ---------------
+// Because Classes are sent by reference, this means that if we try to copy an Instance of a Class, we will only be having two 'Pointers' to the same data. If we change one, we modify the other.
+class Person {
+    var name: String
+    init(name: String) {
+        self.name = name
+    }
+}
+
+var person1 = Person(name: "Erik")
+var person2 = person1
+person2.name = "Alejandra"
+
+print("Person 1: \(person1.name)")
+print("Person 2: \(person2.name)")
+
+// In order to copy a Class, we must create a function that returns a new Instance of the same Class with the same values as the Original one.
+class Dog {
+    var breed: String
+    init(breed:String){
+        self.breed = breed
+    }
+    
+    func copy() -> Dog {
+        let newDog = Dog(breed: self.breed)
+        return newDog
+    }
+}
+
+var firstDog = Dog(breed: "Collie")
+var secondDog = firstDog.copy()
+
+secondDog.breed = "Dashound"
+print("First Dog: \(firstDog.breed)")
+print("Second Dog: \(secondDog.breed)")
+
+// --------------
+// De-Initializer
+// --------------
+// A Deinitializer is a block of code that runs only after there is nothing left poiniting at an Instance of a Class withing a Scope of the code. Where a Scope is the part of the code where the information is available. (Ex. Inside a Loop, inside a Function, inside a File).
+class Program {
+    var name: String
+    
+    init(name:String) {
+        self.name = name
+        print("Loading \(self.name)...")
+    }
+    
+    deinit {
+        print("Closing \(self.name).")
+    }
+}
+
+let softwareNames = ["Safari", "VS Studio", "Xcode"]
+for software in softwareNames {
+    let activeSoftware = Program(name: software)
+    print("Current app: \(activeSoftware.name)")
+}
+
+// -----------------
+// Classes Variables
+// -----------------
+// Because a Classes variable is just a Pointer that leads to an Object, when we Initialize a Class as a Constant, the constant part is the Pointer itself, not the values of the Object. This means, that even if we declare a Class as a Constant, we can change its Properties if they are created as variable.
+
+class User {
+    
 }
