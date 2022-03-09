@@ -184,5 +184,17 @@ for software in softwareNames {
 // Because a Classes variable is just a Pointer that leads to an Object, when we Initialize a Class as a Constant, the constant part is the Pointer itself, not the values of the Object. This means, that even if we declare a Class as a Constant, we can change its Properties if they are created as variable.
 
 class User {
+    let name: String
+    var password: String
     
+    init(name:String, password:String){
+        self.name = name
+        self.password = password
+    }
 }
+
+let newUser = User(name: "Alex", password: "123")
+//newUser.name = "Alex123"
+newUser.password = "awsd"
+
+//newUser = User(name: "Erin", password: "password")
