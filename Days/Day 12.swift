@@ -11,7 +11,6 @@ import Cocoa
         .. Initializer
     }
 */
-
 class Zombie {
     var health:Int
     var defense = 0
@@ -196,5 +195,4 @@ class User {
 let newUser = User(name: "Alex", password: "123")
 //newUser.name = "Alex123"
 newUser.password = "awsd"
-
 //newUser = User(name: "Erin", password: "password")
