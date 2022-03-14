@@ -16,5 +16,5 @@ Later on, I'll be developing small apps to get my SwiftUI skills.
 
 ## Master's Degree AR App.
 Finally, I'm going to develop my AR app. Sadly, I won't be uploading that code here due to sensitive data used on it.
-But my progress will be updated on my Twitter [@duarte96d](https://twitter.com/duarte96d) so you can check it out!
+But my progress will be updated on my Twitter [@duarte96d](https://twitter.com/duarte96d) so you can check it out! 👀
 
