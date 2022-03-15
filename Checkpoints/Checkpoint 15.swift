@@ -24,7 +24,7 @@ func depthSearch(node:Node){
 
 func breadthSearch(node:Node){
     var nodes = [node]
-    
+
     while !nodes.isEmpty {
         let current:Node = nodes.popLast()!
         print(current.value, terminator: " ")
@@ -40,8 +40,8 @@ func breadthSearch(node:Node){
 }
 
 func treeIncludes(value:Int, node:Node) -> Bool{
-    var leftFound:Bool
-    var rightFound:Bool
+    var leftFound:Bool = false
+    var rightFound:Bool = false
     
     if node.value == value{
         return true
@@ -49,14 +49,10 @@ func treeIncludes(value:Int, node:Node) -> Bool{
     
     if node.left != nil {
         leftFound = treeIncludes(value: value, node: node.left!)
-    }else{
-        leftFound = false
     }
     
     if node.right != nil{
         rightFound = treeIncludes(value: value, node: node.right!)
-    }else{
-        rightFound = false
     }
     
     return leftFound || rightFound
@@ -78,4 +74,8 @@ depthSearch(node: root)
 print("\nBreadth Search:")
 breadthSearch(node: root)
 
-print(treeIncludes(value: 100, node: root))
+
+
+for i in 0...10 {
+    print(treeIncludes(value: i, node: root))
+}
