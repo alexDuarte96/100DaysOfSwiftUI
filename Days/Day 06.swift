@@ -3,7 +3,6 @@ import Cocoa
 // -----
 // Loops
 // -----
-
 // We use Loops to repeat an action for as much as needed or while a condition is met.
 
 // --------
