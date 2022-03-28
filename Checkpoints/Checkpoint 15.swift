@@ -74,8 +74,6 @@ depthSearch(node: root)
 print("\nBreadth Search:")
 breadthSearch(node: root)
 
-
-
 for i in 0...10 {
     print(treeIncludes(value: i, node: root))
 }
